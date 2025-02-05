@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-void main()
-{
+
+void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -10,12 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme:ThemeData(scaffoldBackgroundColor: Colors.white),
-      home:MyHomePage(),
-
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+      home: MyHomePage(),
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -24,60 +25,94 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? name,mail,x,y;
+  int counter = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(title: Text("Profile Card",style: TextStyle(color: Colors.white),),actions: [IconButton(onPressed: (){setState(() {
-        name=null;
-        x=null;
-        mail=null;
-        y=null;
-
-
-      });}, icon: Icon(Icons.delete),color: Colors.white,)],backgroundColor: Colors.teal,) ,
-      floatingActionButton: Align(
-        alignment: Alignment.bottomRight,
-        child: Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(color: Colors.teal,borderRadius: BorderRadius.circular(20),
-        ),
-    child: IconButton(onPressed: (){setState(() {
-      name="Omar Yasser";
-      x="Mobile Developer";
-      mail="email@example.com";
-      y="01111111111";
-
-
-    });}, icon: Icon(Icons.add),color: Colors.white,),
-      ),
-      ),
       body: Center(
         child: Container(
-          height: 700,
-          width: 500,
-          decoration: BoxDecoration(color: Colors.teal,borderRadius: BorderRadius.circular(20)),
+          height: 300,
+          width: 300,
+          decoration: BoxDecoration(
+            color: Colors.teal,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(26), bottomRight: Radius.circular(26)),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-              Container(height: 30,),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                clipBehavior: Clip.antiAlias,
-                child:
-                Image.network("https://cdn-icons-gif.flaticon.com/17905/17905521.gif",height: 200,width:200, ),
-
+                height: 20,
               ),
-              SizedBox(height: 20,),
-              if (name != null) Text(name!, style: TextStyle(fontSize: 40, color: Colors.white,)),
-              if (x != null) SizedBox(height: 30),
-              if (x != null) Text(x!, style: TextStyle(fontSize: 25, color: Colors.white)),
-              if (mail != null) SizedBox(height: 30),
-              if (mail != null) Text(mail!, style: TextStyle(fontSize: 25, color: Colors.white)),
-              if (y != null) SizedBox(height: 30),
-              if (y != null) Text(y!, style: TextStyle(fontSize: 25, color: Colors.white)),
+              Text("Who Am I?",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Container(
+                height: 20,
+              ),
+              Text(
+                "Flutter Developer",
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.underline),
+              ),
+              Container(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    clipBehavior: Clip.antiAlias,
+                    child: Image.network(
+                      "https://cdn-icons-gif.flaticon.com/17905/17905521.gif",
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Name: Omar Yasser",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  counter++;
+                                });
+                              },
+                              icon: Icon(Icons.add)),
+                          Text(
+                            "Age:$counter years",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (counter > 1) {
+                                    counter--;
+                                  }
+                                });
+                              },
+                              icon: Icon(Icons.remove)),
+                        ],
+                      ),
+                      Text(
+                        "Nationality: Egyptian",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
